@@ -8,8 +8,8 @@ stopwords=open('stopwords_reference','r+').read()
 
 # stemming begins 
 stemmer=stem.snowball.EnglishStemmer()
-f=open('dataset','r+')
-text_input=f.read()
+dataset=open('dataset','r+')
+text_input=dataset.read()
 #while(len(text_input)>0):
 for word in text_input.split(" "):
 	word.lower()

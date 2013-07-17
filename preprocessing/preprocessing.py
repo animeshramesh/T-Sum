@@ -8,9 +8,7 @@ stopwords=open('stopwords_reference','r+').read()
 
 # Preprocessing begins
 
-
-dataset=open('dataset','r+')
-text_input=dataset.read()
+text_input=open('dataset','r+').read()
 stemmer=stem.snowball.EnglishStemmer()
 
 

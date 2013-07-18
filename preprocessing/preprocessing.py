@@ -1,14 +1,9 @@
-from nltk import stem
+'''from nltk import stem
 import sys
 import re
  
-<<<<<<< HEAD
 # stopwords_reference contains the stop words collection.
 
-=======
-
-#stopwords_reference is a file which contains the stop words collection.
->>>>>>> 70bdcd6da788df3947ab27d5c49607fe95f7f4b7
 stopwords=open('stopwords_reference','r+').read()
 
 # Preprocessing begins
@@ -16,25 +11,64 @@ stopwords=open('stopwords_reference','r+').read()
 
 text_input=open('dataset','r+').read()
 stemmer=stem.snowball.EnglishStemmer()
-<<<<<<< HEAD
 
 
-for word in text_input.split(" "):	
-	word.lower()	
-	if(stopwords.find(word)<0):	
-			word=re.sub(r"[^\w\s]",'',word)	  
-			sys.stdout.write(stemmer.stem(word)+' '); 
+for word in text_input.split(" "):    
+    word.lower()    
+    if(stopwords.find(word)<0):    
+            word=re.sub(r"[^\w\s]",'',word-)      
+            sys.stdout.write(stemmer.stem(word)+' '); 
 
 
 # Preprocessing ends
-=======
-f=open('dataset','r+')
-text_input=f.read()
 
-for word in text_input.split(" "):
-	word.lower()
-	if(stopwords.find(word)<0):
-			word=re.sub(r"[^\w\s]",'',word)
-			sys.stdout.write(stemmer.stem(word)+' ');
-#stemming ends
->>>>>>> 70bdcd6da788df3947ab27d5c49607fe95f7f4b7
+'''
+
+class preprocessor:
+    
+    __text = ""         # Private variable
+    
+    def __init__(self):
+        pass
+    
+    def stop_word_eliminate(self,data):
+        preprocessor.__text = data
+        
+        
+    
+    def stem_word(self):
+        pass
+    
+    def to_lower_case(self):
+        pass
+        
+    
+class input_this:
+    
+    
+    def __init__(self):
+        pass
+    
+    def input_from_file(self):
+        input_this.__text = open('dataset','r+').read()
+        return input_this.__text
+    
+class output_this:
+    
+    def __init__(self,text):
+        self.text = text
+
+    def display(self):
+        print (self.text)
+        
+        
+        
+        
+    
+    
+     
+
+        #output_this.display(preprocessor.stop_word_eliminate(input_this.input_from_file()))
+print ("Here!!!!")
+output_this.display(input_this.input_from_file())
+        

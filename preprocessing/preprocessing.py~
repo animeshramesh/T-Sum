@@ -1,6 +1,6 @@
-import sys
 import re
 from nltk import stem
+
 class preprocessor:
     
     __text = []        # Private variable
@@ -12,8 +12,8 @@ class preprocessor:
     
     
     def stop_word_eliminate(self,data):
-	        
-	filtered_data = []
+            
+        filtered_data = []
         c = preprocessor()
         stop_words = c.preprocessor1()
         preprocessor.text = data.split()
@@ -30,47 +30,40 @@ class preprocessor:
       stemmer=stem.snowball.EnglishStemmer()
       stemmed_data=[]
       for word in data:
-          stemmed_data.append(stemmer.stem(word))
-		
+          stemmed_data.append(stemmer.stem(word)+' ')
+        
       return stemmed_data
     
     def to_lower_case(self,data):
-	
         return data.lower()
-       
     
-        
-        
-   
+    
+ 
 class input_this:
     
-    
-    
-    def input_from_file(self):
-        input_this.text = open('dataset','r+').read()
+    def input_from_file(self,input_file):
+        input_this.text = open(input_file,'r+').read()
         return input_this.text
     
 class output_this:
     
-    
-
     def display(self,word):
         print (word)
         
         
 
+def main():
+	a = input_this()
+	b = output_this()
+	prep = preprocessor()
 
-a = input_this()
-b = output_this()
-prep = preprocessor()
+	inputdataset = a.input_from_file("dataset");
 
-inputdataset = a.input_from_file();
+	filter1 = prep.to_lower_case(inputdataset)
 
-filter1 = prep.to_lower_case(inputdataset)
+	filter2 = prep.stop_word_eliminate(filter1)
+	b.display(filter2)
+	filter3 = prep.stem_word(filter2)
+	#b.display(filter3)     
 
-filter2 = prep.stop_word_eliminate(filter1)
-
-filter3 = prep.stem_word(filter2)
-print filter3
-
-
+main()

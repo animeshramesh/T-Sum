@@ -35,16 +35,13 @@ class preprocessor:
       return stemmed_data
     
     def to_lower_case(self,data):
-	#print data	
-	#data.split(" ")        
-	#for word in data.split():
-         #   lower_data = word.lower()
+	
         return data.lower()
-        #print lower_data
+       
     
         
         
-#dataset input    
+   
 class input_this:
     
     
@@ -68,12 +65,12 @@ b = output_this()
 prep = preprocessor()
 
 inputdataset = a.input_from_file();
-#print inputdataset
+
 filter1 = prep.to_lower_case(inputdataset)
-#print filter1
+
 filter2 = prep.stop_word_eliminate(filter1)
-#print filter2
+
 filter3 = prep.stem_word(filter2)
 print filter3
-'''b.display(filter3)'''
+
 

@@ -46,7 +46,7 @@ class preprocessor:
 class input_this:
     
     
-    def __init__(self,):
+    def __init__(self):
         pass
     
     def input_from_file(self):

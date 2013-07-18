@@ -60,10 +60,8 @@ def main():
 	inputdataset = a.input_from_file("dataset");
 
 	filter1 = prep.to_lower_case(inputdataset)
-
 	filter2 = prep.stop_word_eliminate(filter1)
-	b.display(filter2)
 	filter3 = prep.stem_word(filter2)
-	#b.display(filter3)     
+	b.display(filter3)     
 
 main()

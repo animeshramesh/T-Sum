@@ -1,74 +1,79 @@
-'''from nltk import stem
 import sys
 import re
- 
-# stopwords_reference contains the stop words collection.
-
-stopwords=open('stopwords_reference','r+').read()
-
-# Preprocessing begins
-# Stopword elimination --> Case folding --> Stemming
-
-text_input=open('dataset','r+').read()
-stemmer=stem.snowball.EnglishStemmer()
-
-
-for word in text_input.split(" "):    
-    word.lower()    
-    if(stopwords.find(word)<0):    
-            word=re.sub(r"[^\w\s]",'',word-)      
-            sys.stdout.write(stemmer.stem(word)+' '); 
-
-
-# Preprocessing ends
-
-'''
-
+from nltk import stem
 class preprocessor:
     
-    __text = ""         # Private variable
+    __text = []        # Private variable
     
-    def __init__(self):
-        pass
+    
+    def preprocessor1(self):
+        stopwords=open('stopwords_reference','r+').read()
+        return stopwords
+    
     
     def stop_word_eliminate(self,data):
-        preprocessor.__text = data
-        
+	        
+	filtered_data = []
+        c = preprocessor()
+        stop_words = c.preprocessor1()
+        preprocessor.text = data.split()
+        for word in preprocessor.text:
+            if (stop_words.find(word)<0):
+              word=re.sub(r"[^\w\s]",'',word) 
+              filtered_data.append(word)
+                
+        return filtered_data
+            
         
     
-    def stem_word(self):
-        pass
+    def stem_word(self,data):
+      stemmer=stem.snowball.EnglishStemmer()
+      stemmed_data=[]
+      for word in data:
+          stemmed_data.append(stemmer.stem(word))
+		
+      return stemmed_data
     
-    def to_lower_case(self):
-        pass
+    def to_lower_case(self,data):
+	#print data	
+	#data.split(" ")        
+	#for word in data.split():
+         #   lower_data = word.lower()
+        return data.lower()
+        #print lower_data
+    
         
-    
+        
+#dataset input    
 class input_this:
     
     
-    def __init__(self):
-        pass
     
     def input_from_file(self):
-        input_this.__text = open('dataset','r+').read()
-        return input_this.__text
+        input_this.text = open('dataset','r+').read()
+        return input_this.text
     
 class output_this:
     
-    def __init__(self,text):
-        self.text = text
-
-    def display(self):
-        print (self.text)
-        
-        
-        
-        
     
-    
-     
 
-        #output_this.display(preprocessor.stop_word_eliminate(input_this.input_from_file()))
-print ("Here!!!!")
-output_this.display(input_this.input_from_file())
+    def display(self,word):
+        print (word)
         
+        
+
+
+a = input_this()
+b = output_this()
+prep = preprocessor()
+
+inputdataset = a.input_from_file();
+#print inputdataset
+filter1 = prep.to_lower_case(inputdataset)
+#print filter1
+filter2 = prep.stop_word_eliminate(filter1)
+#print filter2
+filter3 = prep.stem_word(filter2)
+print filter3
+'''b.display(filter3)'''
+

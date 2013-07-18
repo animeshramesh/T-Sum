@@ -65,11 +65,8 @@ b = output_this()
 prep = preprocessor()
 
 inputdataset = a.input_from_file();
-
 filter1 = prep.to_lower_case(inputdataset)
-
 filter2 = prep.stop_word_eliminate(filter1)
-
 filter3 = prep.stem_word(filter2)
 print filter3
 

@@ -55,7 +55,7 @@ def main():
 	b = output_this()
 	prep = preprocessor()
 
-	inputdataset = a.input_from_file("dataset");
+	inputdataset = a.input_from_file("allin1.txt");
 
 	filter1 = prep.to_lower_case(inputdataset)
 		

@@ -20,35 +20,17 @@ def main():
     prep1 = preprocessor()
     i = 1
     inputdataset = ""
-    while (1):
-        #inputdataset = a.input_from_file('%d.txt' % i)
+    while 1:
         try:
             with open('%d.txt' % i):
                 inputdataset = a.input_from_file('%d.txt' % i)
                 filter1 = prep1.to_lower_case(inputdataset)
-                #print filter1
                 filter2 = prep1.stop_word_eliminate(filter1)
-                print filter2
-                # No output after stop_word_eliminate <BUG>
                 filter3 = prep1.stem_word(filter2)
                 i += 1
                 b.display(filter3)
                 print '\n'*2
-        except IOError, e:
+        except IOError:
             break
-
-
-    '''try:
-        while inputdataset != '\0':
-            inputdataset = a.input_from_file('%d.txt' % i)
-            filter1 = prep1.to_lower_case(inputdataset)
-            filter2 = prep1.stop_word_eliminate(filter1)
-            filter3 = prep1.stem_word(filter2)
-            i += 1
-            b.display(filter3)
-            print '\n'*2
-    except IOError, e:
-       pass'''
-
 
 main()

@@ -1,3 +1,3 @@
 __author__ = 'Animesh'
 
-from prep import preprocessing
+from prep.preprocessing import preprocessor

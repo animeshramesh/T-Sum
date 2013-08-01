@@ -1,15 +1,13 @@
-import sys
 import re
 from nltk import stem
+
 class preprocessor:
     
     __text = []        # Private variable
     
-    
     def return_stop_words(self):
         stopwords=open('stopwords_reference','r+').read()
         return stopwords
-    
     
     def stop_word_eliminate(self,data):
             
@@ -25,7 +23,6 @@ class preprocessor:
         return filtered_data
             
         
-    
     def stem_word(self,data):
       stemmer=stem.snowball.EnglishStemmer()
       stemmed_data= " "

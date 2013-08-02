@@ -25,12 +25,28 @@ class weights:
     features = " "
     __tot_freq = []
     __tot_files = 0
+    __tot_features = len(features)
+    __term_freq_filewise = []
 
     def ret_tot_freq(self):
         return weights.__tot_freq
 
     def ret_tot_files(self):
         return weights.__tot_files
+
+    def get_tot_files(self, number):
+        weights.__tot_files = number
+
+    def update_term_freq_filewise(self,number):
+        for i in range(1,number):
+            sentence = open('out%i.txt' % i, 'r+').read()
+            arr = []
+            for each_word in weights.features.split():
+                arr.append(sentence.count(each_word))
+            weights.__term_freq_filewise[i].append(arr)
+
+    def ret_term_freq_filewise(self):
+        return weights.__term_freq_filewise
 
 
 def main():
@@ -47,11 +63,12 @@ def main():
                 filter1 = prep1.to_lower_case(inputdataset)
                 filter2 = prep1.stop_word_eliminate(filter1)
                 filter3 = prep1.stem_word(filter2)
-                b.write_to_file('out%i.txt' %i, filter3)
+                b.write_to_file('out%i.txt' % i, filter3)
                 c.all_features += filter3 + ' '
                 i += 1
         except IOError:
             break
+    c.get_tot_files(i-1)
 
     for word in c.all_features.split():
         if word not in c.features:
@@ -59,9 +76,12 @@ def main():
 
     for each_word in c.features.split():
         c.ret_tot_freq().append(c.all_features.count(each_word))
-    j = 0
-    for each_word in c.features.split():
-        stdout.write(each_word + ' ' + str(c.ret_tot_freq()[j]) + '\n')
-        j += 1
+
+    #j = 0
+    #for each_word in c.features.split():
+    #    stdout.write(each_word + ' ' + str(c.ret_tot_freq()[j]) + '\n')
+    #    j += 1
+
+    c.update_term_freq_filewise(c.ret_tot_files())
 
 main()

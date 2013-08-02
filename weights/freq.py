@@ -1,4 +1,5 @@
-from prep import preprocessor
+from prep.preprocessing import preprocessor
+from sys import stdout
 
 
 class input_this:
@@ -14,13 +15,25 @@ class output_this:
         print (word)
 
 
+class weights:
+
+    all_features = " "
+    features = " "
+    __tot_freq = []
+    __tot_files = 0
+
+    def ret_tot_freq(self):
+        return weights.__tot_freq
+    def ret_tot_files(self):
+        return weights.__tot_files
+
+
 def main():
     a = input_this()
-    b = output_this()
     prep1 = preprocessor()
     i = 1
-    inputdataset = ""
-    all_features = ""
+    inputdataset = " "
+    c = weights()
     while 1:
         try:
             with open('%d.txt' % i):
@@ -28,22 +41,21 @@ def main():
                 filter1 = prep1.to_lower_case(inputdataset)
                 filter2 = prep1.stop_word_eliminate(filter1)
                 filter3 = prep1.stem_word(filter2)
-                all_features+=filter3 + ' '
-                print '\n'*2
+                c.all_features += filter3 + ' '
                 i += 1
         except IOError:
             break
-    print all_features
-    features = set(all_features)
-    #print features
-    tot_freq = []
-    no_of_files = i-1
-    '''for j in range (0,len(features)-1):
-        tot_freq.append(all_features.count(features[j]))
-        i+=1
-    print tot_freq'''
+
+    for word in c.all_features.split():
+        if word not in c.features:
+            c.features += word + ' '
 
 
-
+    for each_word in c.features.split():
+        c.ret_tot_freq().append(c.all_features.count(each_word))
+    j = 0
+    for each_word in c.features.split():
+        stdout.write(each_word + ' ' + str(c.ret_tot_freq()[j]) + '\n')
+        j += 1
 
 main()

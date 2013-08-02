@@ -14,6 +14,10 @@ class output_this:
     def display(self, word):
         print (word)
 
+    def write_to_file(self, output_file, word):
+        with open(output_file, 'w') as f:
+            f.write(word)
+
 
 class weights:
 
@@ -24,12 +28,14 @@ class weights:
 
     def ret_tot_freq(self):
         return weights.__tot_freq
+
     def ret_tot_files(self):
         return weights.__tot_files
 
 
 def main():
     a = input_this()
+    b = output_this()
     prep1 = preprocessor()
     i = 1
     inputdataset = " "
@@ -41,6 +47,7 @@ def main():
                 filter1 = prep1.to_lower_case(inputdataset)
                 filter2 = prep1.stop_word_eliminate(filter1)
                 filter3 = prep1.stem_word(filter2)
+                b.write_to_file('out%i.txt' %i, filter3)
                 c.all_features += filter3 + ' '
                 i += 1
         except IOError:
@@ -49,7 +56,6 @@ def main():
     for word in c.all_features.split():
         if word not in c.features:
             c.features += word + ' '
-
 
     for each_word in c.features.split():
         c.ret_tot_freq().append(c.all_features.count(each_word))

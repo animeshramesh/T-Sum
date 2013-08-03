@@ -1,4 +1,4 @@
-from prep.preprocessing import preprocessor
+from utils.preprocessor import Preprocessor
 from sys import stdout
 
 
@@ -79,7 +79,7 @@ class feature_set:
 def main():
     a = input_this()
     b = output_this()
-    prep1 = preprocessor()
+    prep1 = Preprocessor()
     i = 1
     inputdataset = " "
     c = weights()
@@ -107,6 +107,6 @@ def main():
     #    stdout.write(each_word + ' ' + str(c.ret_tot_freq()[j]) + '\n')
     #    j += 1
 
-    c.update_term_freq_filewise(f.ret_tot_files())
+    c.update_term_freq_matrix(f.ret_tot_files())
 
 main()

@@ -21,12 +21,8 @@ class output_this:
 
 class weights:
 
-    all_features = " "
-    features = " "
     __tot_freq = []
-    __tot_files = 0
-    __tot_features = len(features)
-    __term_freq_filewise = []
+    __term_freq_matrix = []
 
     def ret_tot_freq(self):
         return weights.__tot_freq
@@ -37,16 +33,47 @@ class weights:
     def get_tot_files(self, number):
         weights.__tot_files = number
 
-    def update_term_freq_filewise(self,number):
-        for i in range(1,number):
+    def update_term_freq_matrix(self, number):
+        for i in range(1, number):
             sentence = open('out%i.txt' % i, 'r+').read()
             arr = []
-            for each_word in weights.features.split():
+            for each_word in feature_set.unique_features.split():
                 arr.append(sentence.count(each_word))
-            weights.__term_freq_filewise[i].append(arr)
+            weights.__term_freq_matrix[i].append(arr)
 
-    def ret_term_freq_filewise(self):
-        return weights.__term_freq_filewise
+    def ret_term_freq_matrix(self):
+        return weights.__term_freq_matrix
+
+
+
+
+class feature_set:
+
+    all_features = " "
+    # all_features consists of multiple occurences
+
+    unique_features = " "
+    __tot_files = 0
+
+    def get_all_features(self,word):
+        all_features = word
+
+    def ret_all_features(self):
+        return feature_set.all_features
+
+    def update_features(self):
+        for word in feature_set.all_features.split():
+            if word not in feature_set.unique_features:
+                feature_set.unique_features += word + ' '
+
+    def ret_features(self):
+        return feature_set.unique_features
+
+    def ret_tot_files(self):
+        return feature_set.__tot_files
+
+    def get_tot_files(self, number):
+        feature_set.__tot_files = number
 
 
 def main():
@@ -56,6 +83,7 @@ def main():
     i = 1
     inputdataset = " "
     c = weights()
+    f = feature_set()
     while 1:
         try:
             with open('%d.txt' % i):
@@ -64,24 +92,21 @@ def main():
                 filter2 = prep1.stop_word_eliminate(filter1)
                 filter3 = prep1.stem_word(filter2)
                 b.write_to_file('out%i.txt' % i, filter3)
-                c.all_features += filter3 + ' '
+                f.all_features += filter3 + ' '
                 i += 1
         except IOError:
             break
-    c.get_tot_files(i-1)
+    f.get_tot_files(i-1)
 
-    for word in c.all_features.split():
-        if word not in c.features:
-            c.features += word + ' '
 
-    for each_word in c.features.split():
-        c.ret_tot_freq().append(c.all_features.count(each_word))
+    for each_word in f.unique_features.split():
+        c.ret_tot_freq().append(f.all_features.count(each_word))
 
     #j = 0
     #for each_word in c.features.split():
     #    stdout.write(each_word + ' ' + str(c.ret_tot_freq()[j]) + '\n')
     #    j += 1
 
-    c.update_term_freq_filewise(c.ret_tot_files())
+    c.update_term_freq_filewise(f.ret_tot_files())
 
 main()

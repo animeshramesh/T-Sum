@@ -23,6 +23,7 @@ class weights:
 
     __tot_freq = []
     __term_freq_matrix = []
+    __inverse_document_freq = []
 
     def ret_tot_freq(self):
         return weights.__tot_freq
@@ -40,6 +41,18 @@ class weights:
 
     def ret_term_freq_matrix(self):
         return weights.__term_freq_matrix
+
+    def update_inverse_document_freq(self, tot_files, unique_features):
+        for each_word in unique_features.split():
+            docs = 0
+            for i in range(1, tot_files):
+                data = open('out%i.txt' % i, 'r+').read()
+                if data.count(each_word) > 0:
+                    docs += 1
+            weights.__inverse_document_freq.append(docs)
+
+    def ret_inverse_document_freq(self):
+        return weights.__inverse_document_freq
 
 
 class feature_set:
@@ -75,7 +88,6 @@ def main():
     b = output()
     prep1 = Preprocessor()
     i = 1
-    inputdataset = " "
     c = weights()
     f = feature_set()
     while 1:
@@ -94,7 +106,6 @@ def main():
     f.get_tot_files(i-1)
     f.update_unique_features(f.all_features)
 
-
     for each_word in f.unique_features.split():
         c.ret_tot_freq().append(f.all_features.count(each_word))
 
@@ -104,7 +115,9 @@ def main():
     #    j += 1
 
     c.update_term_freq_matrix(f.ret_tot_files())
+    c.update_inverse_document_freq(f.ret_tot_files(),f.unique_features)
 
+    #print c.ret_inverse_document_freq()
     #print c.ret_term_freq_matrix()
 
 main()

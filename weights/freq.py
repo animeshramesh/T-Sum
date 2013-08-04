@@ -39,7 +39,7 @@ class weights:
             arr = []
             for each_word in feature_set.unique_features.split():
                 arr.append(sentence.count(each_word))
-            weights.__term_freq_matrix[i].append(arr)
+            weights.__term_freq_matrix.append(arr)
 
     def ret_term_freq_matrix(self):
         return weights.__term_freq_matrix

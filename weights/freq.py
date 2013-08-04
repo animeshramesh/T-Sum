@@ -2,14 +2,14 @@ from utils.preprocessor import Preprocessor
 from sys import stdout
 
 
-class input_this:
+class input:
 
     def input_from_file(self, input_file):
-        input_this.text = open(input_file, 'r+').read()
-        return input_this.text
+        input.text = open(input_file, 'r+').read()
+        return input.text
 
 
-class output_this:
+class output:
 
     def display(self, word):
         print (word)
@@ -27,9 +27,6 @@ class weights:
     def ret_tot_freq(self):
         return weights.__tot_freq
 
-    def ret_tot_files(self):
-        return weights.__tot_files
-
     def get_tot_files(self, number):
         weights.__tot_files = number
 
@@ -45,24 +42,21 @@ class weights:
         return weights.__term_freq_matrix
 
 
-
-
 class feature_set:
 
     all_features = " "
-    # all_features consists of multiple occurences
 
     unique_features = " "
     __tot_files = 0
 
-    def get_all_features(self,word):
+    def get_all_features(self, word):
         all_features = word
 
     def ret_all_features(self):
         return feature_set.all_features
 
-    def update_features(self):
-        for word in feature_set.all_features.split():
+    def update_unique_features(self, sentence):
+        for word in sentence.split():
             if word not in feature_set.unique_features:
                 feature_set.unique_features += word + ' '
 
@@ -77,8 +71,8 @@ class feature_set:
 
 
 def main():
-    a = input_this()
-    b = output_this()
+    a = input()
+    b = output()
     prep1 = Preprocessor()
     i = 1
     inputdataset = " "
@@ -96,17 +90,21 @@ def main():
                 i += 1
         except IOError:
             break
+
     f.get_tot_files(i-1)
+    f.update_unique_features(f.all_features)
 
 
     for each_word in f.unique_features.split():
         c.ret_tot_freq().append(f.all_features.count(each_word))
 
     #j = 0
-    #for each_word in c.features.split():
+    #for each_word in f.unique_features.split():
     #    stdout.write(each_word + ' ' + str(c.ret_tot_freq()[j]) + '\n')
     #    j += 1
 
     c.update_term_freq_matrix(f.ret_tot_files())
+
+    #print c.ret_term_freq_matrix()
 
 main()

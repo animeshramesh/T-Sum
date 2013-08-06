@@ -3,7 +3,7 @@ __author__ = 'Animesh'
 from utils import IOHandler
 from utils.preprocessor import Preprocessor
 
-class feature_handler:
+class Feature_Handler:
 
     __all_features = " "
     __unique_features = []

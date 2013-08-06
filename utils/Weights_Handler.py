@@ -5,7 +5,7 @@ from utils.IOHandler import input_handler
 from utils import Feature_Handler
 
 
-class weights_handler:
+class Weights_Handler:
 
     __tot_frequency = []
     __term_freq_matrix = []
@@ -14,7 +14,7 @@ class weights_handler:
     __TFIDF = []
 
     def tot_frequency(self):
-        return weights.__tot_freq
+        return self.__tot_freq
 
     def generate_total_frequency(self, unique_features, all_features):
         for word in unique_features:
@@ -36,7 +36,7 @@ class weights_handler:
             docs = 0
             for i in range(1, total_docs):
                 input_data = input_handler.input_from_file('out%i.txt' % i)
-                if data.count(each_word) > 0:
+                if input_data.count(each_word) > 0:
                     docs += 1
             self.__inverse_document_freq.append(docs)
 

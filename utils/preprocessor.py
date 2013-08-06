@@ -1,5 +1,7 @@
 import re,os
 from nltk import stem
+from utils import IOHandler
+
 
 class Preprocessor:
 
@@ -30,6 +32,12 @@ class Preprocessor:
 
     def to_lower_case(self,data):
         return data.lower()
+
+    def preprocess(self,data):
+        filter1 = self.to_lower_case(data)
+        filter2 = self.stop_word_eliminate(filter1)
+        filter3 = self.stem_word(filter2)
+        return filter3
 
 
 

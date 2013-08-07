@@ -1,6 +1,6 @@
 import re,os
 from nltk import stem
-from utils import IOHandler
+
 
 
 class Preprocessor:

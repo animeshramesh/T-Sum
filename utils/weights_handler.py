@@ -1,11 +1,11 @@
-from utils.preprocessor import Preprocessor
+from utils.file_reader import FileReader
 from sys import stdout
 from math import log
-from utils.IOHandler import input_handler
-from utils import Feature_Handler
+from utils.preprocessor import Preprocessor
+from utils.feature_handler import FeatureHandler
 
 
-class Weights_Handler:
+class WeightsHandler:
 
     __tot_frequency = []
     __term_freq_matrix = []
@@ -48,12 +48,6 @@ class Weights_Handler:
             input_data = input_handler.input_from_file('out%i.txt' % i)
             self.__tot_words_in_each_doc.append(len(input_data.split()))
 
-    '''def update_TFIDF(self, tot_docs, tot_features):
-        for i in range(1, tot_docs):
-            temp_arr = []
-            for j in range(1, tot_features):
-                idf = log(tot_docs / weights.__inverse_document_freq[j])
-                temp_arr.append(self.__term_freq_matrix[i][j] / self.__tot_words_in_each_doc[i] * idf)
-            self.__TFIDF.append(temp_arr)'''
+    
 
 

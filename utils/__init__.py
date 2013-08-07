@@ -1,5 +1,6 @@
 __author__ = 'Animesh'
 
+from utils.file_reader import FileReader
+from utils.file_writer import FileWriter
 from utils.preprocessor import Preprocessor
-from utils import IOHandler
-from utils.feature_handler import Feature_Handler
+from utils.feature_extractor import FeatureExtractor

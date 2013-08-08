@@ -5,4 +5,4 @@ class FeatureReducer:
 	    if value == 1:
                 del TermFreq_Dictionary[key]
 
-	return d
+	return TermFreq_Dictionary

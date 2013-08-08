@@ -18,7 +18,6 @@ class FeatureExtractor:
 
     def extract(self, dataset_directory):
         dataset_Reader = FileReader()
-        dataset_Writer = FileWriter()
         dataset_preprocessor = Preprocessor()
 	dataset_WeightsHandler = WeightsHandler()
         i = 1
@@ -27,7 +26,6 @@ class FeatureExtractor:
                 with open(dataset_directory + '/%d.txt' % i):
                     inputdataset = dataset_Reader.read(dataset_directory + '/%d.txt' % i)
                     preprocessed_data = dataset_preprocessor.preprocess(inputdataset)
-		    dataset_Writer.write(dataset_directory + '/out%i.txt' % i, preprocessed_data)
                     for j in range(len(preprocessed_data.split())):
 		        dataset_WeightsHandler.update_totfreq_dict(preprocessed_data.split()[j])
                     i += 1

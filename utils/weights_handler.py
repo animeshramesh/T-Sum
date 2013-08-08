@@ -2,7 +2,7 @@ from utils.file_reader import FileReader
 from sys import stdout
 from math import log
 from utils.preprocessor import Preprocessor
-from utils.feature_extractor import FeatureExtractor
+from utils.feature_extractor import *
 
 
 class WeightsHandler:
@@ -11,6 +11,8 @@ class WeightsHandler:
     __tot_freq_dict = {}		
     __inverse_doc_freq_dict = {}	
     __tot_weight_dict = {}
+    __sentenceList =[]
+    __sentenceWeight_dict = {}
     
     def tot_freq_dict(self):
         return self.__tot_freq_dict
@@ -23,21 +25,26 @@ class WeightsHandler:
 
     def update_totfreq_dict(self, key):
 	if key in self.__tot_freq_dict:
-	   self.__tot_freq_dict[key] += 1
+	    self.__tot_freq_dict[key] += 1
 	else:
-	   self.__tot_freq_dict[key] = 1
+	    self.__tot_freq_dict[key] = 1
   
     def generate_inv_doc_freq_dict(self, total_docs):
-	for each_feature in self.__tot_term_freq_dict.keys():
+        for each_feature in self.__tot_term_freq_dict.keys():
 	    docs = 0
 	    for i in range(total_docs):
-                input_data = FileReader.read('out%i.txt' % i)
-		if input_data.count(each_feature) > 0:
+           	 input_data = FileReader.read('out%i.txt' % i)
+		 if input_data.count(each_feature) > 0:
                     docs += 1
 	    self.__inverse_doc_freq_dict[each_feature] = docs
 	
-    def update_tot_weight_dict(self):
+    def generate_tot_weight_dict(self):
 	for each_feature in self.__tot_term_freq_dict.keys():
 	    self.__tot_weight_dict[each_feature] = self.__tot_freq_dict[each_feature] + self.__inverse_doc_freq_dict[each_feature]
 
-    
+    def update_sentenceList(self, document):
+    	sentence_extractor = SentenceExtractor()
+    	self.__sentenceList.append(sentence_extractor.extract_sentences(document))
+    	
+    	
+			    

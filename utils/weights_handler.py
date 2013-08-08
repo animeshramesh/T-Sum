@@ -34,13 +34,4 @@ class WeightsHandler:
 	    self.__inverse_doc_freq_dict[each_feature] = docs
 	
 
-    def read(self):
-        inputdataset = open('1.txt', 'r+').read().split()
-	for i in range(0, len(inputdataset)):
-	    self.update_totfreq_dict(inputdataset[i])
-	    
-	
-	
-	
-
-
+    

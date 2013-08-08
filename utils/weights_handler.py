@@ -10,14 +10,17 @@ class WeightsHandler:
     
     __tot_freq_dict = {}		
     __inverse_doc_freq_dict = {}	
-   
+    __tot_weight_dict = {}
+    
     def tot_freq_dict(self):
         return self.__tot_freq_dict
   
     def inverse_doc_freq(self):
 	return self.__inverse_doc_freq_dict
 
-    
+    def tot_weight_dict(self):
+	return self.__tot_weight_dict
+
     def update_totfreq_dict(self, key):
 	if key in self.__tot_freq_dict:
 	   self.__tot_freq_dict[key] += 1
@@ -33,5 +36,8 @@ class WeightsHandler:
                     docs += 1
 	    self.__inverse_doc_freq_dict[each_feature] = docs
 	
+    def update_tot_weight_dict(self):
+	for each_feature in self.__tot_term_freq_dict.keys():
+	    self.__tot_weight_dict[each_feature] = self.__tot_freq_dict[each_feature] + self.__inverse_doc_freq_dict[each_feature]
 
     

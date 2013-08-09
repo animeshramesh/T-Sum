@@ -2,7 +2,7 @@ from utils.file_reader import FileReader
 from sys import stdout
 from math import log
 from utils.preprocessor import Preprocessor
-from utils.feature_extractor import *
+from utils.sentence_extractor import SentenceExtractor
 
 
 class WeightsHandler:
@@ -14,6 +14,9 @@ class WeightsHandler:
     __sentenceList =[]
     __sentenceWeight_dict = {}
     
+    def sentenceList(self):
+	return self.__sentenceList
+  
     def tot_freq_dict(self):
         return self.__tot_freq_dict
   
@@ -44,7 +47,7 @@ class WeightsHandler:
 
     def update_sentenceList(self, document):
     	sentence_extractor = SentenceExtractor()
-    	self.__sentenceList.append(sentence_extractor.extract_sentences(document))
+    	self.__sentenceList.extend(sentence_extractor.extract_sentences(document))
     	
     	
 			    

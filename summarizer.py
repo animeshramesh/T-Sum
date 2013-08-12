@@ -37,7 +37,7 @@ while 1:
 
 total_documents = i - 1
 dataset_WeightsHandler.replace_totfreq_dict(dataset_FeatureReducer.reduceFeatures(dataset_WeightsHandler.tot_freq_dict()))
-dataset_WeightsHandler.generate_inv_doc_freq_dict(total_documents)
+dataset_WeightsHandler.generate_inv_doc_freq_dict(total_documents, dataset_directory)
 dataset_WeightsHandler.generate_tot_weight_dict()
 dataset_WeightsHandler.generate_STM()
 print dataset_WeightsHandler.sentenceWeight_dict()

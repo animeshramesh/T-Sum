@@ -38,7 +38,7 @@ class WeightsHandler:
         self.__tot_freq_dict = new_tot_freq_dict
 
 
-    def generate_inv_doc_freq_dict(self, total_docs):
+    def generate_inv_doc_freq_dict(self, total_docs, dataset_directory):
         for each_feature in self.__tot_freq_dict.keys():
             docs = 0
             for i in range(1, total_docs + 1):

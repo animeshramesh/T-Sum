@@ -43,7 +43,7 @@ class WeightsHandler:
             docs = 0
             for i in range(1, total_docs + 1):
                 input_data_reader = FileReader()
-                input_data = input_data_reader.read('out%d.txt' % i)
+                input_data = input_data_reader.read(dataset_directory + 'out%d.txt' % i)
                 if input_data.count(each_feature) > 0:
                     docs += 1
             self.__inverse_doc_freq_dict[each_feature] = docs

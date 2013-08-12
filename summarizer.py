@@ -14,6 +14,7 @@ dataset_output_handler = FileWriter()
 dataset_preprocessor = Preprocessor()
 dataset_WeightsHandler = WeightsHandler()
 dataset_FeatureReducer = FeatureReducer()
+dataset_directory = raw_input()
 i = 1
 while 1:
     try:

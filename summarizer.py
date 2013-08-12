@@ -17,8 +17,8 @@ dataset_FeatureReducer = FeatureReducer()
 i = 1
 while 1:
     try:
-        with open('%d.txt' % i):
-            inputdataset = dataset_Reader.read('%d.txt' % i)
+        with open(dataset_directory + '%d.txt' % i):
+            inputdataset = dataset_Reader.read(dataset_directory + '%d.txt' % i)
             dataset_WeightsHandler.update_sentenceList(inputdataset)
             preprocessed_data = []
             for word in inputdataset.split():
@@ -26,7 +26,7 @@ while 1:
                 if word not in dataset_preprocessor.stop_words():
                     preprocessed_data.append(str(dataset_preprocessor.preprocess(word)))
                 # To lower and stop-word elimination above required for removing 'none' in dictionary
-            dataset_output_handler.write('out%d.txt' % i, preprocessed_data)
+            dataset_output_handler.write(dataset_directory + 'out%d.txt' % i, preprocessed_data)
             for j in range(len(preprocessed_data)):
                 dataset_WeightsHandler.update_totfreq_dict(preprocessed_data[j])
             i += 1

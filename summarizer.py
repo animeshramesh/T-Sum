@@ -46,7 +46,6 @@ class Summarizer:
 		#print dataset_WeightsHandler.inverse_doc_freq() ------- working        
 		dataset_WeightsHandler.generate_tot_weight_dict()
 		#print dataset_WeightsHandler.tot_freq_dict()     -------- log not working.. not floating point values found    
-		#dataset_WeightsHandler.generate_STM()
 		
 
 if __name__ == '__main__':

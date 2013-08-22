@@ -1,10 +1,11 @@
 import re,os
 from nltk import stem
-import string
+from utils.file_reader import FileReader
+
 
 
 class Preprocessor:
-
+    
     def stop_words(self):
         stop_words_filename = os.path.join(os.path.dirname(__file__), 'stopwords_reference')
         stopwords = open(stop_words_filename, 'r+').read()
@@ -17,15 +18,30 @@ class Preprocessor:
 
     def stem_word(self, word_in_dataset):
         stemmer = stem.snowball.EnglishStemmer()
-        stemmed_word = stemmer.stem(str(word_in_dataset))
+        stemmed_word = stemmer.stem((word_in_dataset))
         return stemmed_word
 
-    def to_lower_case(self, data):
-        return data.lower()
 
-    def preprocess(self, data):
-        filter1 = self.to_lower_case(data)
-        filter2 = self.regularise_expression(filter1)
-        filter3 = self.stem_word(filter2)
-        return str(filter3)
+    def preprocess(self, files, input_path):
+        dataset_Reader = FileReader()
+        preprocessed_list = []
+        try:
+            for doc in files:
+                with open(input_path + doc):
+                    inputdataset = (dataset_Reader.read(input_path + doc))
+                    preprocessed_data = []
+                    for word in inputdataset.split():
+                        word = word.lower()
+                        if word not in self.stop_words():
+                            filter1 = self.regularise_expression(str(word))
+                            filter2 = self.stem_word(filter1)
+                            preprocessed_data.append(str(filter2))
+                            
+                    preprocessed_list.append(preprocessed_data)
+        except IOError:
+            print "IOError"
+        
+        return preprocessed_list
+
+
 

@@ -11,6 +11,7 @@ class WeightsHandler:
     __sentenceList =[]
     __sentenceWeight_dict = {}
     __preprocessed_list = []
+    __cosine_similarity_triangle = []
 
 
     def sentenceList(self):
@@ -64,7 +65,7 @@ class WeightsHandler:
         sentence_extractor = SentenceExtractor()
         self.__sentenceList.extend(sentence_extractor.extract_sentences(document))
 
-    def generate_STM(self):
+    def generate_STM(self):     # this function need to be updated. 
         for sentence in self.__sentenceList:
             preprocessed_words = []
             sentence_weight = []
@@ -77,5 +78,37 @@ class WeightsHandler:
                 else:
                     sentence_weight.append(0)
             self.__sentenceWeight_dict[sentence] = sentence_weight
+    
 
+class CosineRelationExtractor:
+    
+    def extract_cos_similarity(self, vector_dict):
+        cosine_matrix = []
+        for sentence1 in vector_dict.keys():
+            magnitude1 = self.calculate_magnitude(vector_dict[sentence1])
+            cos_values = []
+            for sentence2 in vector_dict.keys():
+                magnitude2 = self.calculate_magnitude(vector_dict[sentence2])
+                dotproduct = self.calculate_dotproduct(vector_dict[sentence1], vector_dict[sentence2])
+                cos_values.append(dotproduct / (magnitude1 * magnitude2))
+            cosine_matrix.append(cos_values)
+        return cosine_matrix
+                
+    def calculate_magnitude(self, vector):
+        from math import sqrt
+        sum_of_squares = 0
+        for feature_weight in vector:
+            sum_of_squares += (feature_weight*feature_weight)
+        return (sqrt(sum_of_squares))
+    
+    def calculate_dotproduct(self, vector1, vector2):
+        dotproduct = 0
+        from pip.vendor.html5lib.serializer.htmlserializer import len
+        for i in range(len(vector1)):
+            dotproduct += ((vector1[i]) * (vector2[i]))
+        return dotproduct
+        
+    
+                
+    
 

@@ -26,7 +26,7 @@ class WeightsHandler:
     def tot_weight_dict(self):
         return self.__tot_weight_dict
 
-    def sentenceWeight_dict(self):
+    def sentence_weight_dict(self):
         return self.__sentenceWeight_dict
     
     def preprocessed_list(self):
@@ -34,6 +34,9 @@ class WeightsHandler:
     
     def set_preprocessed_list(self, preprocessed_list):
         self.__preprocessed_list = preprocessed_list
+    
+    def set_sentence_list(self, sentencelist):
+        self.__sentenceList = sentencelist
         
     def update_totfreq_dict(self):
         for row in self.__preprocessed_list:
@@ -65,20 +68,24 @@ class WeightsHandler:
         sentence_extractor = SentenceExtractor()
         self.__sentenceList.extend(sentence_extractor.extract_sentences(document))
 
-    def generate_STM(self):     # this function need to be updated. 
+    def generate_STM(self):    
+
+        preprocessor = Preprocessor()
+       
+        print "\n\n"
+         
+        
         for sentence in self.__sentenceList:
-            preprocessed_words = []
+            preprocessed_words = preprocessor.preprocess_sentence(sentence)
             sentence_weight = []
-            word_preprocessor = Preprocessor()
-            for word in sentence.split():
-                preprocessed_words.append(str(word_preprocessor.preprocess(word)))
             for feature in self.tot_weight_dict().keys():
                 if feature in preprocessed_words:
-                    sentence_weight.append(self.__tot_freq_dict[feature])
+                    sentence_weight.append(self.__tot_weight_dict[feature])
                 else:
                     sentence_weight.append(0)
+                
             self.__sentenceWeight_dict[sentence] = sentence_weight
-    
+        
 
 class CosineRelationExtractor:
     

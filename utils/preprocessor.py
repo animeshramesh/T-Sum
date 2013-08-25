@@ -1,6 +1,7 @@
 import re,os
 from nltk import stem
 from utils.file_reader import FileReader
+from utils.sentence_extractor import SentenceExtractor
 
 
 
@@ -42,6 +43,31 @@ class Preprocessor:
             print "IOError"
         
         return preprocessed_list
-
-
-
+    
+    def preprocess_sentence(self, sentence):
+        preprocessed_words = []
+        
+        for word in sentence.split():
+            word = word.lower()
+            if word not in self.stop_words():
+                filter1 = self.regularise_expression(word)
+                filter2 = self.stem_word(filter1)
+                preprocessed_words.append(str(filter2))
+        return preprocessed_words
+        
+    
+    def extract_sentences(self, files, inputpath):
+        dataset_Reader = FileReader()
+        sentence_extractor = SentenceExtractor()
+        sentence_list = []
+        try:
+            for doc in files:
+                with open(inputpath + doc):
+                    inputdataset = dataset_Reader.read(inputpath + doc)
+                    sentence_list.extend(sentence_extractor.extract_sentences(inputdataset))
+        except IOError:
+            print "IOError"
+            
+        return sentence_list
+                    
+            

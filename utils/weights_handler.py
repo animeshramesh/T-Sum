@@ -51,7 +51,6 @@ class WeightsHandler:
 
 
     def generate_inv_doc_freq_dict(self, preprocessed_list):
-        #from math import log
         for each_feature in self.__tot_freq_dict.keys():
             docs = 0
             for i in range(len(preprocessed_list)):
@@ -71,10 +70,6 @@ class WeightsHandler:
     def generate_STM(self):    
 
         preprocessor = Preprocessor()
-       
-        print "\n\n"
-         
-        
         for sentence in self.__sentenceList:
             preprocessed_words = preprocessor.preprocess_sentence(sentence)
             sentence_weight = []
@@ -86,36 +81,4 @@ class WeightsHandler:
                 
             self.__sentenceWeight_dict[sentence] = sentence_weight
         
-
-class CosineRelationExtractor:
-    
-    def extract_cos_similarity(self, vector_dict):
-        cosine_matrix = []
-        for sentence1 in vector_dict.keys():
-            magnitude1 = self.calculate_magnitude(vector_dict[sentence1])
-            cos_values = []
-            for sentence2 in vector_dict.keys():
-                magnitude2 = self.calculate_magnitude(vector_dict[sentence2])
-                dotproduct = self.calculate_dotproduct(vector_dict[sentence1], vector_dict[sentence2])
-                cos_values.append(dotproduct / (magnitude1 * magnitude2))
-            cosine_matrix.append(cos_values)
-        return cosine_matrix
-                
-    def calculate_magnitude(self, vector):
-        from math import sqrt
-        sum_of_squares = 0
-        for feature_weight in vector:
-            sum_of_squares += (feature_weight*feature_weight)
-        return (sqrt(sum_of_squares))
-    
-    def calculate_dotproduct(self, vector1, vector2):
-        dotproduct = 0
-        from pip.vendor.html5lib.serializer.htmlserializer import len
-        for i in range(len(vector1)):
-            dotproduct += ((vector1[i]) * (vector2[i]))
-        return dotproduct
-        
-    
-                
-    
 

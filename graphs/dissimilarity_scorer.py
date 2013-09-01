@@ -17,7 +17,7 @@ class DissimilarityScorer:
         return dissimilarity_matrix
                 
                         
-    def max_wup_similarity(self, word1_synsets, word2_synsets):
+    def calculate_max_wup_similarity(self, word1_synsets, word2_synsets):
         max_similarity = 0
         for syns1 in word1_synsets:
             for syns2 in word2_synsets:

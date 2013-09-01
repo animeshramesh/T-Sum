@@ -1,3 +1,3 @@
-from graphs.graph_generator import *
-from graphs.cosine_relation_extractor import CosineRelationExtractor
+from graphs.sine_normaliser import SineNormaliser
+from graphs.sine_relation_extractor import SineRelationExtractor
 from graphs.dissimilarity_scorer import DissimilarityScorer

@@ -25,3 +25,11 @@ class DissimilarityScorer:
                 if similarity_score > max_similarity:
                     max_similarity = similarity_score
         return max_similarity
+    
+    def multiply_sine(self, dissimilarity_matrix, sine_matrix):
+        for i in range(len(sine_matrix)):
+            for j in range(len(sine_matrix[i])):
+                dissimilarity_matrix[i][j] *= sine_matrix[i][j]
+        return dissimilarity_matrix
+        
+        

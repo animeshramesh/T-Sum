@@ -1,14 +1,15 @@
-class CosineRelationExtractor:
+class SineRelationExtractor:
     
-    def extract_cos_similarity(self, vector_dict):
-        cosine_matrix = []
+    def extract_sine_similarity(self, vector_dict):
+        sine_matrix = []
         for sentence1 in vector_dict.keys():
-            cos_values = []
+            sine_values = []
             for sentence2 in vector_dict.keys():
                 dotproduct = self.calculate_dotproduct(vector_dict[sentence1], vector_dict[sentence2])
-                cos_values.append(dotproduct)
-            cosine_matrix.append(cos_values)
-        return cosine_matrix
+                from math import sqrt
+                sine_values.append(srqt(1-dotproduct*dotproduct))
+            sine_matrix.append(sine_values)
+        return sine_matrix
                 
     def calculate_magnitude(self, vector):
         from math import sqrt

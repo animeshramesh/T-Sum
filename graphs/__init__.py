@@ -1,3 +1,4 @@
 from graphs.sine_normaliser import SineNormaliser
 from graphs.sine_relation_extractor import SineRelationExtractor
 from graphs.dissimilarity_scorer import DissimilarityScorer
+from graphs.node_ranker import NodeRanker

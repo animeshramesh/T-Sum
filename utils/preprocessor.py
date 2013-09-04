@@ -2,7 +2,7 @@ import re,os
 from nltk import stem
 from utils.file_reader import FileReader
 from utils.sentence_extractor import SentenceExtractor
-from test import sentence_list
+
 
 
 

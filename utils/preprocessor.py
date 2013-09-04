@@ -2,6 +2,7 @@ import re,os
 from nltk import stem
 from utils.file_reader import FileReader
 from utils.sentence_extractor import SentenceExtractor
+from test import sentence_list
 
 
 
@@ -69,5 +70,14 @@ class Preprocessor:
             print "IOError"
             
         return sentence_list
-                    
+    
+    def remove_stop_words_from_sentencelist(self, sentence_list):
+        sentencelist_without_stopwords = []
+        sentence = ""
+        for each_sentence in sentence_list:
+            for word in each_sentence.split():
+                if word not in self.stop_words():
+                    sentence += (' ' + word)
+            sentencelist_without_stopwords.append(sentence)
+        return sentencelist_without_stopwords
             

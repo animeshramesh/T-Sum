@@ -80,5 +80,8 @@ class WeightsHandler:
                     sentence_weight.append(0)
                 
             self.__sentenceWeight_dict[sentence] = sentence_weight
+            
+    
+            
         
 

@@ -11,7 +11,7 @@ class DissimilarityScorer:
                     word1_synsets = synonym_dict[word1]
                     for word2 in sentence2.split():
                         word2_synsets = synonym_dict[word2]
-                        dissimilarity_score += (1 - self.max_wup_similarity(word1_synsets, word2_synsets))
+                        dissimilarity_score += (1 - self.calculate_max_wup_similarity(word1_synsets, word2_synsets))
                 sentence_dissimilarity.append(dissimilarity_score/number_of_comparisons)
             dissimilarity_matrix.append(sentence_dissimilarity)
         return dissimilarity_matrix

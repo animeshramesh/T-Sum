@@ -1,4 +1,3 @@
-from nltk.tokenize import sent_tokenize
 import re
 class SentenceExtractor:
     
@@ -8,6 +7,5 @@ class SentenceExtractor:
         newSentenceList = [sentence for sentence in sentenceList if len(sentence) > 3]
         return newSentenceList
      
-        #return sent_tokenize(textInDocument)
         
         

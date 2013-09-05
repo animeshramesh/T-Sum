@@ -59,9 +59,8 @@ class WeightsHandler:
             self.__inverse_doc_freq_dict[each_feature] = (docs)
 
     def generate_tot_weight_dict(self):
-        from math import log
         for each_feature in self.__tot_freq_dict.keys():
-            self.__tot_weight_dict[each_feature] = self.__tot_freq_dict[each_feature] * (log(self.__inverse_doc_freq_dict[each_feature]))
+            self.__tot_weight_dict[each_feature] = self.__tot_freq_dict[each_feature] * ((self.__inverse_doc_freq_dict[each_feature]))
 
     def update_sentenceList(self, document):
         sentence_extractor = SentenceExtractor()

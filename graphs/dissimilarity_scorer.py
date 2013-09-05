@@ -1,3 +1,4 @@
+import sys
 class DissimilarityScorer:
     
     def assign_dissimilarity_score(self, synonym_dict, sentence_list):
@@ -11,20 +12,26 @@ class DissimilarityScorer:
                     word1_synsets = synonym_dict[word1]
                     for word2 in sentence2.split():
                         word2_synsets = synonym_dict[word2]
+                        
                         dissimilarity_score += (1 - self.calculate_max_wup_similarity(word1_synsets, word2_synsets))
                 sentence_dissimilarity.append(dissimilarity_score/number_of_comparisons)
+               
             dissimilarity_matrix.append(sentence_dissimilarity)
         return dissimilarity_matrix
                 
                         
     def calculate_max_wup_similarity(self, word1_synsets, word2_synsets):
-        max_similarity = 0
+        '''max_similarity = 0
         for syns1 in word1_synsets:
             for syns2 in word2_synsets:
                 similarity_score = syns1.wup_similarity(syns2)
                 if similarity_score > max_similarity:
                     max_similarity = similarity_score
-        return max_similarity
+        return max_similarity'''
+        if len(word1_synsets)!=0 and len(word2_synsets)!=0:
+            return word1_synsets[0].wup_similarity(word2_synsets[0])
+        else:
+            return 0
     
     def multiply_sine(self, dissimilarity_matrix, sine_matrix):
         for i in range(len(sine_matrix)):

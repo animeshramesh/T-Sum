@@ -7,7 +7,10 @@ class SineRelationExtractor:
             for sentence2 in vector_dict.keys():
                 dotproduct = self.calculate_dotproduct(vector_dict[sentence1], vector_dict[sentence2])
                 from math import sqrt
-                sine_values.append(sqrt(1-dotproduct*dotproduct))
+                if (1-(dotproduct*dotproduct)) < 0.09:
+                    sine_values.append(0)
+                else:
+                    sine_values.append(sqrt(1-(dotproduct*dotproduct)))
             sine_matrix.append(sine_values)
         return sine_matrix
                 

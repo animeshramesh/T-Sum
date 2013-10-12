@@ -8,7 +8,7 @@ from sets.distributed_ranks import RankDistributor
 
 
 
-input_path = '/home/animesh/workspace/T-Sum/Data sets/Inception/'
+input_path = '/home/animesh/T-Sum/Data sets/Inception/'
 files = [f for f in os.listdir(input_path) if os.path.isfile(input_path + f)]
 prep = Preprocessor()
 sentence_list = prep.extract_sentences(files, input_path)
@@ -31,12 +31,17 @@ normalised_scores = scorer.normalise_score(scores)
 distributed_ranks = rank_counter_in_0_to_1.distribute_ranks(normalised_scores)
 print distributed_ranks
 
-
 ranklist = ranker.rank_sentences(scores)
-
-for rank in ranklist:
-    print sentence_list[rank]
-
+i = 0
+with open('peer_summary.html','w') as f:
+    f.write(''''<html>\n<head>\n<title>\npeer_Summary</title> </head><body bgcolor="white">\n''')     
+    for rank in ranklist:
+        if rank < 0.1 :
+            break
+        i += 1
+        f.write('''<a name="%d">[%d]</a> <a href="#%d" id=%d>'''%(i,i,i,i) + sentence_list[rank])
+        f.write('\n')
+    f.write('</a>\n</body>\n</html>\n')
     
 
                 

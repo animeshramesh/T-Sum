@@ -1,0 +1,18 @@
+<ROUGE_EVAL version="1.0">
+<EVAL ID="1">
+<PEER-ROOT>
+systems
+</PEER-ROOT>
+<MODEL-ROOT>
+models
+</MODEL-ROOT>
+<INPUT-FORMAT TYPE="SEE">
+</INPUT-FORMAT>
+<PEERS>
+<P ID="tsum">inception.tsum.system.html</P>
+</PEERS>
+<MODELS>
+<M ID="1">inception.1.gold.html</M>
+</MODELS>
+</EVAL>
+</ROUGE_EVAL>

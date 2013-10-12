@@ -9,7 +9,7 @@ class NodeRanker:
             scorelist_of_sentences.append(sum_of_elements)
         return scorelist_of_sentences
     
-    def rank_nodes(self, scorelist_of_sentences):
+    def rank_sentences(self, scorelist_of_sentences):
         ranklist = []
         for i in range(len(scorelist_of_sentences)):
             max_value = -1

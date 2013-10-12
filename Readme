@@ -1,1 +1,1 @@
-A Text Summarization tool written in Python which uses semantic graphs and statistical analysis.
+A Text Summarization tool written in Python which uses semantic graphs, sets and statistically analyzes raw text in order to summarize it.

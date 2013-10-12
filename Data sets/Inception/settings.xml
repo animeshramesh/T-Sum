@@ -1,0 +1,20 @@
+<ROUGE_EVAL version="1.55">
+<EVAL ID="1">
+<PEER-ROOT>
+reviews/systems
+</PEER-ROOT>
+<MODEL-ROOT>
+reviews/models
+</MODEL-ROOT>
+<INPUT-FORMAT TYPE="SEE">
+</INPUT-FORMAT>
+<PEERS>
+<P ID="1">SL.P.10.R.11.SL062003-01.html</P>
+</PEERS>
+<MODELS>
+<M ID="A">SL.P.10.R.A.SL062003-01.html</M>
+<M ID="B">SL.P.10.R.B.SL062003-01.html</M>
+<M ID="C">SL.P.10.R.C.SL062003-01.html</M>
+<M ID="D">SL.P.10.R.D.SL062003-01.html</M>
+</MODELS>
+</EVAL>
